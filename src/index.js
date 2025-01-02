@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = 3000;
 const db = require('./persistence');
 const getItems = require('./routes/getItems');
 const addItem = require('./routes/addItem');
@@ -15,7 +16,7 @@ app.put('/items/:id', updateItem);
 app.delete('/items/:id', deleteItem);
 
 db.init().then(() => {
-    app.listen(3000, () => console.log('Listening on port 3000'));
+    app.listen(port, '0.0.0.0', () => console.log(`Listening on port ${port}`));
 }).catch((err) => {
     console.error(err);
     process.exit(1);
